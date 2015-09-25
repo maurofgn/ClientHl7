@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.myTelnet.My.MySettings
+        Friend ReadOnly Property Settings() As Global.ClientHl7.My.MySettings
             Get
-                Return Global.myTelnet.My.MySettings.Default
+                Return Global.ClientHl7.My.MySettings.Default
             End Get
         End Property
     End Module

@@ -1,0 +1,9 @@
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\ClientHl7.exe
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\ClientHl7.pdb
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\ClientHl7.xml
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.Form1.resources
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.Resources.resources
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.vbproj.GenerateResource.Cache
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.exe
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.xml
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\ClientHl7.pdb

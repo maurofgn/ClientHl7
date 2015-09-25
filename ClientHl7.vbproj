@@ -7,9 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DD288073-2B45-4E49-B2B2-382987F7C4F5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>myTelnet.My.MyApplication</StartupObject>
-    <RootNamespace>myTelnet</RootNamespace>
-    <AssemblyName>myTelnet</AssemblyName>
+    <StartupObject>ClientHl7.My.MyApplication</StartupObject>
+    <RootNamespace>ClientHl7</RootNamespace>
+    <AssemblyName>ClientHl7</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -44,7 +44,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>myTelnet.xml</DocumentationFile>
+    <DocumentationFile>ClientHl7.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>x86</PlatformTarget>
@@ -55,7 +55,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>myTelnet.xml</DocumentationFile>
+    <DocumentationFile>ClientHl7.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
