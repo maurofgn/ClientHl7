@@ -24,8 +24,8 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BtnConn = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Disconnetti = New System.Windows.Forms.Button()
+        Me.Invio = New System.Windows.Forms.Button()
         Me.hostname = New System.Windows.Forms.TextBox()
         Me.porta = New System.Windows.Forms.TextBox()
         Me.FConsole = New System.Windows.Forms.TextBox()
@@ -53,25 +53,25 @@ Partial Class Form1
         Me.BtnConn.Text = "Connetti"
         Me.BtnConn.UseVisualStyleBackColor = True
         '
-        'Button2
+        'Disconnetti
         '
-        Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(225, 41)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Disconnetti"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Disconnetti.Enabled = False
+        Me.Disconnetti.Location = New System.Drawing.Point(225, 41)
+        Me.Disconnetti.Name = "Disconnetti"
+        Me.Disconnetti.Size = New System.Drawing.Size(75, 23)
+        Me.Disconnetti.TabIndex = 1
+        Me.Disconnetti.Text = "Disconnetti"
+        Me.Disconnetti.UseVisualStyleBackColor = True
         '
-        'Button3
+        'Invio
         '
-        Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(713, 46)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(50, 23)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "Invia"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Invio.Enabled = False
+        Me.Invio.Location = New System.Drawing.Point(713, 46)
+        Me.Invio.Name = "Invio"
+        Me.Invio.Size = New System.Drawing.Size(50, 23)
+        Me.Invio.TabIndex = 2
+        Me.Invio.Text = "Invia"
+        Me.Invio.UseVisualStyleBackColor = True
         '
         'hostname
         '
@@ -212,8 +212,8 @@ Partial Class Form1
         Me.Controls.Add(Me.FConsole)
         Me.Controls.Add(Me.porta)
         Me.Controls.Add(Me.hostname)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Invio)
+        Me.Controls.Add(Me.Disconnetti)
         Me.Controls.Add(Me.BtnConn)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Form1"
@@ -225,8 +225,8 @@ Partial Class Form1
 
     End Sub
     Friend WithEvents BtnConn As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Disconnetti As System.Windows.Forms.Button
+    Friend WithEvents Invio As System.Windows.Forms.Button
     Friend WithEvents hostname As System.Windows.Forms.TextBox
     Friend WithEvents porta As System.Windows.Forms.TextBox
     Friend WithEvents FConsole As System.Windows.Forms.TextBox

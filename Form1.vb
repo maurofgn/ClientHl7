@@ -31,16 +31,16 @@ Public Class Form1
         Status1.Text = "Client " + IIf(tcpclient.Connected, "connesso", "non connesso")
 
         Timer1.Enabled = tcpclient.Connected
-        Button2.Enabled = tcpclient.Connected
-        Button3.Enabled = tcpclient.Connected
+        Disconnetti.Enabled = tcpclient.Connected
+        Invio.Enabled = tcpclient.Connected
 
     End Sub
 
     'Disconnetti
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Disconnetti_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Disconnetti.Click
         Timer1.Enabled = False
-        Button2.Enabled = False
-        Button3.Enabled = False
+        Disconnetti.Enabled = False
+        Invio.Enabled = False
 
         If (Not tcpclient Is Nothing) Then
             tcpclient.Close()
@@ -53,7 +53,7 @@ Public Class Form1
     End Sub
 
     'Invia
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Invio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Invio.Click
 
         If Not IO.File.Exists(FilePathToSend.Text) Then
             'se il file non esiste viene avvertito l'utente e si esce dalla procedura
@@ -61,44 +61,11 @@ Public Class Form1
             Exit Sub
         End If
 
-        Button2.Enabled = False
+        Disconnetti.Enabled = False
 
-        Dim readText() As String = File.ReadAllLines(FilePathToSend.Text)
+        execute()
 
-        'ciclare su readText e fare un invio x ogni gruppo separato da un record vuoto
-        Dim groups As ArrayList = New ArrayList()
-        Dim lines As ArrayList = Nothing
-
-        For Each row As String In readText
-
-            If (row.Length > 0) Then
-                If (lines Is Nothing) Then
-                    lines = New ArrayList()
-                    groups.Add(lines)
-                End If
-                lines.Add(row)
-            Else
-                lines = Nothing
-            End If
-        Next
-
-        For Each lines In groups
-            Dim msgToSend As String() = lines.ToArray(GetType(String))
-            Dim ok As Boolean = send(hl7Encode(msgToSend))
-            If (ok) Then
-                'risposta dal server
-                Dim answer As String = getAnswer()
-
-                FConsole.Text += answer
-
-            Else
-                'scrive tutte le righe lines sul file garbage. Le righe sono precedute da un record vuoto dal secondo messaggio in poi
-            End If
-
-        Next
-
-
-        Button2.Enabled = True
+        Disconnetti.Enabled = True
 
 
     End Sub
@@ -238,10 +205,56 @@ Public Class Form1
 
     End Function
 
+    'legge il file, crea i gruppi di messaggi con dentro le righe del singolo messaggio, invia il messaggio e gestisce la risposta
+    Private Sub execute()
+
+        Dim readText() As String = File.ReadAllLines(FilePathToSend.Text)
 
 
-    Private Sub FConsole_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FConsole.TextChanged
+        Dim information = My.Computer.FileSystem.GetFileInfo(FilePathToSend.Text)
+        msgBox("")
 
+        'msgBox("The file's full name is " & information.FullName & ".")
+        'msgBox("Last access time is " & information.LastAccessTime & ".")
+        'msgBox("The length is " & information.Length & ".")
+
+
+
+        'ciclare su readText e fare un invio x ogni gruppo separato da un record vuoto
+        Dim groups As ArrayList = New ArrayList()
+        Dim lines As ArrayList = Nothing
+
+        For Each row As String In readText
+
+            If (row.Length > 0) Then
+                If (lines Is Nothing) Then
+                    lines = New ArrayList()
+                    groups.Add(lines)
+                End If
+                lines.Add(row)
+            Else
+                lines = Nothing
+            End If
+        Next
+
+        For Each lines In groups
+            Dim msgToSend As String() = lines.ToArray(GetType(String))
+            Dim ok As Boolean = send(hl7Encode(msgToSend))
+            Dim answer As String = Nothing
+            If (ok) Then
+                answer = getAnswer()    'risposta dal server
+                answer = answer.Replace(CR, vbCrLf).Replace(START_MESSAGE, "").Replace(END_MESSAGE, "") 'la risposta è nel formato hl7 e quindi va pulita
+                'se a causa della risposta c'è un esito negativo, il messaggio va comunque trattato come garbage
+            End If
+
+            If (ok) Then
+                FConsole.Text += answer
+            Else
+                'scrive tutte le righe lines sul file garbage. Le righe sono precedute da un record vuoto dal secondo messaggio in poi
+            End If
+
+        Next
     End Sub
+
 End Class
 
