@@ -1,0 +1,38 @@
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Debug\myTelnet.exe
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Debug\myTelnet.pdb
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Debug\myTelnet.xml
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.Form1.resources
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.Resources.resources
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.vbproj.GenerateResource.Cache
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.exe
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.xml
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Debug\myTelnet.pdb
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\bin\Debug\myTelnet.exe
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\bin\Debug\myTelnet.pdb
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\bin\Debug\myTelnet.xml
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.Form1.resources
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.Resources.resources
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.vbproj.GenerateResource.Cache
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.exe
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.xml
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Debug\myTelnet.pdb
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.exe
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.xml
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.pdb
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\bin\Debug\myTelnet.exe
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\bin\Debug\myTelnet.pdb
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\bin\Debug\myTelnet.xml
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.Form1.resources
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.Resources.resources
+C:\Users\mauro.MESIS\Downloads\visual studio\vb\myTelnet\obj\Debug\myTelnet.vbproj.GenerateResource.Cache
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.exe
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.xml
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.pdb
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\myTelnet.exe
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\myTelnet.pdb
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\bin\Debug\myTelnet.xml
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.Form1.resources
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.Resources.resources
+C:\Users\mauro.MESIS\Documents\Visual Studio 2010\Projects\myTelnet\obj\Debug\myTelnet.vbproj.GenerateResource.Cache

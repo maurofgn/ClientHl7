@@ -1,0 +1,13 @@
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Release\myTelnet.exe
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Release\myTelnet.pdb
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\bin\Release\myTelnet.xml
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\ResolveAssemblyReference.cache
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.Form1.resources
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.Resources.resources
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.vbproj.GenerateResource.Cache
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.exe
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.xml
+C:\Users\proprietario\Desktop\myTelnet\myTelnet\obj\Release\myTelnet.pdb
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Release\myTelnet.exe
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Release\myTelnet.xml
+C:\Users\proprietario\Documents\Utility .NET\myTelnet\myTelnet\obj\Release\myTelnet.pdb
