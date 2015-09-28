@@ -36,8 +36,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.FilePathToSend = New System.Windows.Forms.TextBox()
         Me.Browse1 = New System.Windows.Forms.Button()
-        Me.Split = New System.Windows.Forms.Button()
-        Me.msgBox = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Status1 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -91,18 +89,19 @@ Partial Class Form1
         '
         'FConsole
         '
-        Me.FConsole.Location = New System.Drawing.Point(12, 118)
+        Me.FConsole.Location = New System.Drawing.Point(12, 87)
         Me.FConsole.Multiline = True
         Me.FConsole.Name = "FConsole"
         Me.FConsole.ReadOnly = True
-        Me.FConsole.Size = New System.Drawing.Size(751, 333)
+        Me.FConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.FConsole.Size = New System.Drawing.Size(751, 386)
         Me.FConsole.TabIndex = 6
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label1.Location = New System.Drawing.Point(7, 102)
+        Me.Label1.Location = New System.Drawing.Point(7, 71)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(45, 13)
         Me.Label1.TabIndex = 7
@@ -142,9 +141,9 @@ Partial Class Form1
         '
         Me.FilePathToSend.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.FilePathToSend.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem
-        Me.FilePathToSend.Location = New System.Drawing.Point(407, 19)
+        Me.FilePathToSend.Location = New System.Drawing.Point(369, 19)
         Me.FilePathToSend.Name = "FilePathToSend"
-        Me.FilePathToSend.Size = New System.Drawing.Size(300, 20)
+        Me.FilePathToSend.Size = New System.Drawing.Size(338, 20)
         Me.FilePathToSend.TabIndex = 12
         '
         'Browse1
@@ -155,23 +154,6 @@ Partial Class Form1
         Me.Browse1.TabIndex = 14
         Me.Browse1.Text = "Sfoglia"
         Me.Browse1.UseVisualStyleBackColor = True
-        '
-        'Split
-        '
-        Me.Split.Location = New System.Drawing.Point(713, 75)
-        Me.Split.Name = "Split"
-        Me.Split.Size = New System.Drawing.Size(50, 23)
-        Me.Split.TabIndex = 15
-        Me.Split.Text = "Split"
-        Me.Split.UseVisualStyleBackColor = True
-        '
-        'msgBox
-        '
-        Me.msgBox.AutoSize = True
-        Me.msgBox.Location = New System.Drawing.Point(13, 476)
-        Me.msgBox.Name = "msgBox"
-        Me.msgBox.Size = New System.Drawing.Size(0, 13)
-        Me.msgBox.TabIndex = 16
         '
         'Label6
         '
@@ -201,8 +183,6 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(795, 509)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.msgBox)
-        Me.Controls.Add(Me.Split)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.FilePathToSend)
         Me.Controls.Add(Me.Browse1)
@@ -237,8 +217,6 @@ Partial Class Form1
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents FilePathToSend As System.Windows.Forms.TextBox
     Friend WithEvents Browse1 As System.Windows.Forms.Button
-    Friend WithEvents Split As System.Windows.Forms.Button
-    Friend WithEvents msgBox As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents Status1 As System.Windows.Forms.ToolStripStatusLabel

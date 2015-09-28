@@ -3,11 +3,14 @@ Imports System.Net.Sockets
 Imports System.IO
 Imports System.Threading
 Imports System.Text
+Imports System.Security
 
 Public Class Form1
 
     Dim tcpclient As TcpClient
     Dim netstream As NetworkStream
+    Dim fileExist As Boolean = False
+    Dim tcpConnected As Boolean = False
 
     Private ReadOnly CHUNK_SIZE As Integer = 1024
 
@@ -18,36 +21,18 @@ Public Class Form1
     'Connetti
     Private Sub BtnConn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnConn.Click
 
-        tcpclient = New TcpClient
-
-        Try
-            tcpclient.Connect(hostname.Text, CInt(porta.Text))
-            netstream = tcpclient.GetStream()
-
-        Catch ex As Exception
-            '            Console.WriteLine("couldnt connect to IP Address")
-        End Try
+        tcpConnect()
 
         Status1.Text = "Client " + IIf(tcpclient.Connected, "connesso", "non connesso")
-
-        Timer1.Enabled = tcpclient.Connected
-        Disconnetti.Enabled = tcpclient.Connected
-        Invio.Enabled = tcpclient.Connected
+        enableButton()
 
     End Sub
 
     'Disconnetti
     Private Sub Disconnetti_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Disconnetti.Click
-        Timer1.Enabled = False
-        Disconnetti.Enabled = False
-        Invio.Enabled = False
 
-        If (Not tcpclient Is Nothing) Then
-            tcpclient.Close()
-            netstream.Close()
-        End If
-
-        tcpclient = Nothing
+        tcpDisconnect()
+        enableButton()
         Status1.Text = "Client diconnesso"
 
     End Sub
@@ -61,51 +46,33 @@ Public Class Form1
             Exit Sub
         End If
 
-        Disconnetti.Enabled = False
-
-        execute()
-
-        Disconnetti.Enabled = True
-
+        execute(FilePathToSend.Text)
+        enableButton()
 
     End Sub
 
-    Private Function getAnswer() As String
-        ''risposta del server
-        'If netstream.CanRead Then
-        '    ' Reads the NetworkStream into a byte buffer.
-        '    Dim readBytes(tcpclient.ReceiveBufferSize) As Byte
-        '    netstream.Read(readBytes, 0, CInt(tcpclient.ReceiveBufferSize))
+    Private Sub FilePathToSend_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FilePathToSend.TextChanged
 
-        '    ' Returns the data received from the host to the console.
-        '    Dim returndata As String = Encoding.ASCII.GetString(readBytes)
-        '    '            Console.WriteLine(("This is what the host returned to you: " + returndata))
-        'Else
-        '    Console.WriteLine("You cannot read data from this stream.")
-        'End If
+        Dim information As FileInfo
 
-        Dim returndata As String = ""
-        If netstream.CanRead Then
+        fileExist = False
+        Try
+            information = My.Computer.FileSystem.GetFileInfo(FilePathToSend.Text)
+            fileExist = information.Exists
+        Catch ex As ArgumentException
+            Status1.Text = "formato del nome del percorso non è corretto"
+        Catch ex As NotSupportedException
+            Status1.Text = "Nel percorso sono presenti i due punti a metà della stringa"
+        Catch ex As PathTooLongException
+            Status1.Text = "Percorso troppo lungo"
+        Catch ex As SecurityException
+            Status1.Text = "non si dispone delle autorizzazioni necessarie"
+        End Try
 
-            ' Reads the NetworkStream into a byte buffer.
-            Dim bytes(tcpclient.ReceiveBufferSize) As Byte
-            ' Read can return anything from 0 to numBytesToRead. This method blocks until at least one byte is read.
-            netstream.Read(bytes, 0, CInt(tcpclient.ReceiveBufferSize))
 
-            'la risposta bytes è nel formato hl7 ed andrebbe ripulita
+        Invio.Enabled = tcpConnected And fileExist
 
-            returndata = Encoding.ASCII.GetString(bytes)    ' Returns the data received from the host to the console.
-            'Else
-            '    'Console.WriteLine("You cannot read data from this stream.")
-            '    'tcpclient.Close()
-            '    ''Closing the tcpClient instance does not close the network stream.
-            '    'netstream.Close()
-            '    Return ""
-        End If
-
-        Return returndata
-
-    End Function
+    End Sub
 
     Private Sub Browse1_Click(ByVal sen As System.Object, ByVal e As System.EventArgs) Handles Browse1.Click
         Dim Open As New OpenFileDialog
@@ -119,62 +86,43 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Slplit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Split.Click
-        If Not IO.File.Exists(FilePathToSend.Text) Then
-            'se il file non esiste viene avvertito l'utente e si esce dalla procedura
-            MessageBox.Show("Il file non esiste, inserire il percorso di un file esistente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
+    'Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+    '    If netstream.DataAvailable = True Then
+    '        Dim stringar As String = Nothing
+    '        Dim bytes(tcpclient.ReceiveBufferSize()) As Byte
+    '        netstream.Read(bytes, 0, bytes.Length)
 
-        'Dim data() As Byte = File.ReadAllBytes(FilePathToSend.Text)
-
-        Dim bytes() As Byte = bytesFromFile(FilePathToSend.Text)
-
-    End Sub
-
-    'Private Sub DumpBytes(ByVal bdata() As Byte, ByVal len As Integer)
-
-    '    Dim i As Integer
-    '    Dim j As Integer = 0
-    '    Dim dchar As Char
-    '    ' 3 * 16 chars for hex display, 16 chars for text and 8 chars
-    '    ' for the 'gutter' int the middle.
-    '    Dim dumptext As New StringBuilder("        ", 16 * 4 + 8)
-    '    For i = 0 To len - 1
-    '        dumptext.Insert(j * 3, String.Format("{0:X2} ", CType(bdata(i), Integer)))
-    '        dchar = Convert.ToChar(bdata(i))
-    '        ' replace 'non-printable' chars with a '.'.
-    '        If Char.IsWhiteSpace(dchar) Or Char.IsControl(dchar) Then
-    '            dchar = "."
-    '        End If
-    '        dumptext.Append(dchar)
-    '        j += 1
-    '        If j = 16 Then
-    '            Console.WriteLine(dumptext)
-    '            dumptext.Length = 0
-    '            dumptext.Append("        ")
-    '            j = 0
-    '        End If
-    '    Next i
-    '    ' display the remaining line
-    '    If j > 0 Then
-    '        ' add blank hex spots to align the 'gutter'.
-    '        For i = j To 15
-    '            dumptext.Insert(j * 3, "   ")
-    '        Next i
-    '        Console.WriteLine(dumptext)
+    '        stringar += System.Text.Encoding.ASCII.GetString(bytes)
+    '        FConsole.Text += stringar & vbCrLf
     '    End If
-
     'End Sub
 
-    Private Function bytesFromFile(ByVal filePath As String) As Byte()
+    'spedisce la stringa passat
 
-        Return File.ReadAllBytes(filePath)
+
+    Private Function getAnswer() As String
+        'risposta del server
+        Dim returndata As String = ""
+        If netstream.CanRead Then
+
+            ' Reads the NetworkStream into a byte buffer.
+            Dim bytes(tcpclient.ReceiveBufferSize) As Byte
+            ' Read can return anything from 0 to numBytesToRead. This method blocks until at least one byte is read.
+
+            Try
+                netstream.Read(bytes, 0, CInt(tcpclient.ReceiveBufferSize))
+                returndata = Encoding.ASCII.GetString(bytes)    ' Returns the data received from the host to the console.
+                returndata = returndata.Replace(CR, vbCrLf).Replace(START_MESSAGE, "").Replace(END_MESSAGE, "") 'la risposta è nel formato hl7 e quindi va pulita
+            Catch ex As IOException
+                returndata = Nothing
+            End Try
+        End If
+
+
+        Return returndata
 
     End Function
 
-
-    'spedisce la stringa passat
     Private Function send(ByVal msgToSend As String) As Boolean
 
         Dim retValue As Boolean = True
@@ -185,6 +133,7 @@ Public Class Form1
             netstream.Flush()
         Catch ex As Exception
             Status1.Text = "Collegamento con il server interrotto"
+            tcpConnected = False
             retValue = False
         End Try
 
@@ -206,19 +155,12 @@ Public Class Form1
     End Function
 
     'legge il file, crea i gruppi di messaggi con dentro le righe del singolo messaggio, invia il messaggio e gestisce la risposta
-    Private Sub execute()
+    Private Sub execute(ByVal fileName As String)
 
-        Dim readText() As String = File.ReadAllLines(FilePathToSend.Text)
+        Dim readText() As String = File.ReadAllLines(fileName)
 
-
-        Dim information = My.Computer.FileSystem.GetFileInfo(FilePathToSend.Text)
-        msgBox("")
-
-        'msgBox("The file's full name is " & information.FullName & ".")
-        'msgBox("Last access time is " & information.LastAccessTime & ".")
-        'msgBox("The length is " & information.Length & ".")
-
-
+        'Dim information = My.Computer.FileSystem.GetFileInfo(FilePathToSend.Text)
+        'MsgBox(information.DirectoryName)
 
         'ciclare su readText e fare un invio x ogni gruppo separato da un record vuoto
         Dim groups As ArrayList = New ArrayList()
@@ -238,14 +180,25 @@ Public Class Form1
         Next
 
         For Each lines In groups
+
+            If (Not tcpConnected) Then
+                tcpConnect()
+            End If
+
+
             Dim msgToSend As String() = lines.ToArray(GetType(String))
             Dim ok As Boolean = send(hl7Encode(msgToSend))
             Dim answer As String = Nothing
             If (ok) Then
                 answer = getAnswer()    'risposta dal server
-                answer = answer.Replace(CR, vbCrLf).Replace(START_MESSAGE, "").Replace(END_MESSAGE, "") 'la risposta è nel formato hl7 e quindi va pulita
-                'se a causa della risposta c'è un esito negativo, il messaggio va comunque trattato come garbage
+                If (answer Is Nothing) Then
+                    Status1.Text = "Il server non ha fornito risposta"
+                    ok = False
+                End If
+
+                'se a causa della risposta c'è un esito negativo, il messaggio va trattato come garbage
             End If
+
 
             If (ok) Then
                 FConsole.Text += answer
@@ -253,7 +206,49 @@ Public Class Form1
                 'scrive tutte le righe lines sul file garbage. Le righe sono precedute da un record vuoto dal secondo messaggio in poi
             End If
 
+            tcpDisconnect() 'la disconnessione e la connessione è necessaria perchè il server si disconnette per ogni messaggio
+            tcpConnect()
+
         Next
+
+        enableButton()
+
+    End Sub
+
+    Private Sub tcpDisconnect()
+
+
+        tcpConnected = False
+        If (Not tcpclient Is Nothing) Then
+            tcpclient.Close()
+            netstream.Close()
+        End If
+        tcpclient = Nothing
+
+
+    End Sub
+
+    Private Sub tcpConnect()
+        tcpclient = New TcpClient
+
+        Try
+            tcpclient.Connect(hostname.Text, CInt(porta.Text))
+            netstream = tcpclient.GetStream()
+
+        Catch ex As Exception
+            '            Console.WriteLine("couldnt connect to IP Address")
+        End Try
+
+        tcpConnected = tcpclient.Connected
+
+    End Sub
+
+    Private Sub enableButton()
+        Disconnetti.Enabled = tcpConnected
+        BtnConn.Enabled = Not tcpConnected
+        hostname.Enabled = Not tcpConnected
+        porta.Enabled = Not tcpConnected
+        Invio.Enabled = tcpConnected And fileExist
     End Sub
 
 End Class
